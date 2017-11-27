@@ -44,11 +44,19 @@ nameChangeHandler = (event,index) => {
 
 }
 toggleNamesHandler = () => {
-  const mostrar = [...this.state.showPerson];
+  const mostrar = this.state.showPerson;
   this.setState({showPerson:!mostrar})
 }
 
   render() {
+    const style = {
+      backgroundColor: "green",
+      color: "white",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer"
+    };
+
     let persons = null;
     if(this.state.showPerson){
       persons =(
@@ -62,15 +70,30 @@ toggleNamesHandler = () => {
           })}
         </div>
       );
+
+      style.backgroundColor = "red";
+  
     }
 
-    return (
-      <div className="App">
 
-        <button onClick={this.toggleNamesHandler}>Cambiar Nombre</button>
+    //let classes = ["red","bold"].join(" ");
+      let classes = [];
+      if(this.state.persons.length <=2){
+        classes.push("red");
+      }
+      if(this.state.persons.length <=1){
+        classes.push("bold");
+      }
+
+    return (
+    
+      <div className="App">
+        <p className={classes.join(" ")}>Probando</p>
+        <button style={style} onClick={this.toggleNamesHandler}>Mostrar personas</button>
         {persons}
         
       </div>
+     
     );
   }
 }
